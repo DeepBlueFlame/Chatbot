@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/opex-dev/Haoxuan_workspace/ML/Chatbox/naive_chatbot/chatbot_model.tflearn"
+all_model_checkpoint_paths: "/home/opex-dev/Haoxuan_workspace/ML/Chatbox/naive_chatbot/chatbot_model.tflearn"
