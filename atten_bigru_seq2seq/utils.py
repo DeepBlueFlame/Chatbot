@@ -3,6 +3,16 @@ import csv
 import codecs
 import argparse
 
+"""
+Load the cornell movie dialog corpus.
+Available from here:
+http://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html
+
+The code is directly used the github code in the following link:
+https://github.com/floydhub/textutil-preprocess-cornell-movie-corpus.git
+This code has a slight modification compared to the original code  
+"""
+
 
 # Define a fields in a line for fields extraction
 MOVIE_LINES_FIELDS = ["LINE_ID", "CHARACTER_ID", "MOVIE_ID", "CHARACTER", "TEXT"]
