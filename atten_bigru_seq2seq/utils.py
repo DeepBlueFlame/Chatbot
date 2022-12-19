@@ -151,7 +151,7 @@ def main():
     conversations = match_conversation(os.path.join(args.input, "movie_conversations.txt"),
                                       lines, MOVIE_CONVERSATIONS_FIELDS)
 
-    with open(args.output, 'w', encoding='iso-8859-1') as outputfile:
+    with open(args.output, 'w', encoding='ytf-8') as outputfile:
         writer = csv.writer(outputfile, delimiter=args.delimiter)
         
         for pair in extract_conversation_sentence_pairs(conversations):
