@@ -57,7 +57,7 @@ def filter(pairs, max_length=20):
             if len(p[0].split(' ')) < max_length and len(p[1].split(' ')) < max_length]
 
 
-class NumericalMapping:
+class IndexMapping:
     """
     Map each unique word that encounter in the pairs to an index value
     Then represent and store the discrete space by a dictionary
@@ -67,7 +67,7 @@ class NumericalMapping:
         self.word2index = {} # encode the word into an integer
         self.index2word = {PAD: '<P>', SOS: '<S>', EOS: '<E>'} # decode the integer into a word
         self.word2count = {} # count the occurence time of words
-        self.n_words = 2 # Count the SOS and EOS, then accumulate when new words come
+        self.n_words = 3 # Count the SOS and EOS, then accumulate when new words come
         
     def add_word(self, word):
         # add the word into the dictionary and record its occurence time
@@ -102,7 +102,7 @@ def trim_mapping(mapping, min_count):
         if v > min_count:
             keep_words.append(k) # Remove all words that the count is less than the threshold 
     
-    new_mapping = NumericalMapping() # Create a new mapping
+    new_mapping = IndexMapping() # Create a new mapping
     
     for w in keep_words:
         new_mapping.add_word(w)
@@ -177,15 +177,15 @@ def main():
         print("{}={}".format(arg, getattr(args, arg)))
     
     print('\nLoading data...')
-    with open('data/formatted_movie_lines.txt') as f:
+    with open('intermedium/loaded_movie_lines.txt') as f:
         read_in = f.read().strip().split('\n')
     
     print('\nFormalizing data...')
     formalized_pairs = [[formalize(s) for s in l.split('\t')] for l in read_in]
     filtered_pairs = filter(formalized_pairs, max_length=MAX_LENGTH)
 
-    print('\nBuilding numerical mapping')
-    num_map = NumericalMapping()
+    print('\nBuilding indexing mapping')
+    num_map = IndexMapping()
     for p in filtered_pairs:
         num_map.add_sentence(p[0])
         num_map.add_sentence(p[1])
